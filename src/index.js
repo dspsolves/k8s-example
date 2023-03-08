@@ -7,6 +7,8 @@ app.get("/", (req, res) => {
   if (new Date().getTime() % 2 === 0) {
     try {
       const x = 1 / 0;
+
+      res.status(200).send(x);
     } catch (err) {
       console.error(err);
       res.status(500).send("Internal Server Error");
