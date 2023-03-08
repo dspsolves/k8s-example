@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-example
+  template:
+    metadata:
+      labels:
+        app: k8s-example
+    spec:
+      containers:
+        - name: server
+          image: k8s-example
+          ports:
+          - containerPort: 8080
+          env:
+          - name: PORT
+            value: "8080"
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+
+
